@@ -12,39 +12,91 @@ var myIcon = L.icon({
     iconAnchor: [19, 19],
     popupAnchor: [-3, -16]
 });
+var MSP = {
+	name:"Minneapolis-St. Paul, Minnesota",
+	latitude:44.8819,
+	longitude:-93.2217,
+	rate:4.0
+}
 
-var MSP ={};
-MSP.latitude=44.8819;
+var denver = {
+	name:"Denver, Colorado",
+	latitude:39.7392,
+	longitude:-104.9847,
+	rate:4.0
+}
 
-var MSP2 = L.marker([MSP.latitude, -93.2217], {icon: myIcon}).addTo(map);
-MSP2.bindPopup("Minneapolis-St. Paul, Minnesota: 3.6");
+function placeCity(city) {
+	L.marker([city.latitude, city.longitude], {icon: myIcon}).addTo(map).bindPopup(city.name + ": "+ city.rate);
+}
 
-var denver = L.marker([39.7392, -104.9847], {icon: myIcon}).addTo(map);
-denver.bindPopup("Denver, Colorado: 4.0");
+var austin = {
+	name: "Austin, Texas",
+	latitude:30.2500,
+	longitude:-97.7500,
+	rate:4.2
+}
 
-var austin = L.marker([30.2500, -97.7500], {icon: myIcon}).addTo(map);
-austin.bindPopup("Austin, Texas: 4.2");
+var OKC = {
+	name: "Oklahoma City, Oklahoma",
+	latitude:35.4822,
+	longitude:-97.5350,
+	rate:4.2
+}
 
-var OKC = L.marker([35.4822, -97.5350], {icon: myIcon}).addTo(map);
-OKC.bindPopup("Oklahoma City, Oklahoma: 4.2");
+var columbus = {
+	name: "Columbus, Ohio",
+	latitude:39.9833,
+	longitude:-82.9833, 
+	rate: 4.3
+}
 
-var columbus = L.marker([39.9833, -82.9833], {icon: myIcon}).addTo(map);
-columbus.bindPopup("Columbus, Ohio: 4.3");
+var pittsburgh = {
+	name: "Pittsburgh, Pennsylvania",
+	latitude:40.4417,
+	longitude:-80.0000, 
+	rate: 4.6
+}
 
-var pittsburgh = L.marker([40.4417, -80.0000], {icon: myIcon}).addTo(map);
-pittsburgh.bindPopup("Pittsburgh, Pennsylvania: 4.6");
+var sanAntonio = {
+	name: "San Antonio, Texas",
+	latitude:29.4167,
+	longitude:-98.5000, 
+	rate:4.7
+}
 
-var sanAntonio = L.marker([29.4167, -98.5000], {icon: myIcon}).addTo(map);
-sanAntonio.bindPopup("San Antonio, Texas: 4.7");
+var cincinnati = {
+	name: "Cincinnati, Ohio",
+	latitude:39.1000,
+	longitude:-84.5167,
+	rate: 4.8
+}
 
-var cincinnati = L.marker([39.1000, -84.5167], {icon: myIcon}).addTo(map);
-cincinnati.bindPopup("Cincinnati, Ohio: 4.8");
+var indianapolis = {
+	name: "Indianapolis, Indiana",
+	latitude:39.7910,
+	longitude:-86.1480, 
+	rate:4.8
+}
 
-var indianapolis = L.marker([39.7910, -86.1480], {icon: myIcon}).addTo(map);
-indianapolis.bindPopup("Indianapolis, Indiana: 4.8");
+var houston ={
+	name: "Houston, Texas",
+	latitude:29.7628,
+	longitude:-95.3831, 
+	rate:4.9
+}
 
-var houston = L.marker([29.7628, -95.3831], {icon: myIcon}).addTo(map);
-houston.bindPopup("Houston, Texas:4.9");
+var cities = [MSP,denver,austin,OKC,columbus,pittsburgh,sanAntonio,cincinnati,indianapolis,houston];
+
+function placeCities(x) {
+	var i = 0;
+	while (i< x.length) {
+		placeCity(x[i]);
+		i = i+1;
+	}
+}
+
+placeCities(cities);
 
 $('.leaflet-marker-icon').on('click',function() {
 	$('#sidebar').css('top','-10px');
