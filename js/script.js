@@ -47,6 +47,11 @@ var houston = L.marker([29.7628, -95.3831], {icon: myIcon}).addTo(map);
 houston.bindPopup("Houston, Texas:4.9");
 
 $('.leaflet-marker-icon').on('click',function() {
-	$('#sidebar').css('height','100vh');
+	$('#sidebar').css('top','-10px');
+	$('#cityinfo').text('MOVE HERE!');
+})
+$('#map').on('click', function() {
+	$('#sidebar').css('top','76vh');
+	$('#cityinfo').text('');
 })
 
