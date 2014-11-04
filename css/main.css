@@ -16,20 +16,34 @@ body, html {
 }
 #sidebar {
 	z-index: 100;
+	border-top-right-radius: 10px;
 	position: absolute;
-	bottom: 0;
-	width: 30vh;
+	top: 76vh;
+	width: 400px;
 	background-color: rgba(0,0,0,.35);
 	padding: 0;
 	margin: 0;
 	color: white;
-	padding: 10px;
+	padding-right: 20px;
 	padding-left: 20px;
+	height: 100vh;
+}
+header {
+	height: 20vh;
 }
 h1 {
+	font-size: 35px;
+}
+h2 {
+	font-size: 60px;
 }
 h3 {
 	line-height: 1.7;
+}
+h4 {
+	font-size: 300px;
+	line-height: .3;
+	margin:0;
 }
 a {
 	color: white;
@@ -37,4 +51,9 @@ a {
 }
 a:hover {
 	text-decoration: underline;
+}
+#cityinfo {
+	position: relative;
+	font-size: 50px;
+	text-align: center
 }
