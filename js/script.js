@@ -12,6 +12,7 @@ var myIcon = L.icon({
     iconAnchor: [19, 19],
     popupAnchor: [-3, -16]
 });
+
 var MSP = {
 	name:"Minneapolis-St. Paul, Minnesota",
 	latitude:44.8819,
@@ -24,10 +25,6 @@ var denver = {
 	latitude:39.7392,
 	longitude:-104.9847,
 	rate:4.0
-}
-
-function placeCity(city) {
-	L.marker([city.latitude, city.longitude], {icon: myIcon}).addTo(map).bindPopup(city.name + ": "+ city.rate);
 }
 
 var austin = {
@@ -88,6 +85,12 @@ var houston ={
 
 var cities = [MSP,denver,austin,OKC,columbus,pittsburgh,sanAntonio,cincinnati,indianapolis,houston];
 
+
+function placeCity(city) {
+	L.marker([city.latitude, city.longitude], {icon: myIcon}).addTo(map).bindPopup(city.name + ": "+ city.rate);
+
+}
+
 function placeCities(x) {
 	var i = 0;
 	while (i< x.length) {
@@ -98,12 +101,23 @@ function placeCities(x) {
 
 placeCities(cities);
 
-$('.leaflet-marker-icon').on('click',function() {
-	$('#sidebar').css('top','-10px');
-	$('#cityinfo').text('MOVE HERE!');
+/*
+function compareCities(x) {
+	var i = 0
+}
+*/
+
+
+function displayCity(city) {
+	$('#cityinfo').html('<h2>' + city.name + '</h2></br><h4>' + city.rate + '</h4>');
+}
+
+
+$('.leaflet-marker-icon').on('click', function() {
+	$('#sidebar').css('top','0').css('border-top-right-radius','0');
+	displayCity(austin);
 })
 $('#map').on('click', function() {
 	$('#sidebar').css('top','76vh');
 	$('#cityinfo').text('');
 })
-
