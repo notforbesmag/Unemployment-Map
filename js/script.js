@@ -69,12 +69,13 @@ var cincinnati = {
 	rate: 4.8
 }
 
-var indianapolis = {
+var indianapolis = ({
 	name: "Indianapolis, Indiana",
 	latitude:39.7910,
 	longitude:-86.1480, 
-	rate:4.8
-}
+	rate:4.8,
+	latlng:[39.7910,-86.1480]
+})
 
 var houston ={
 	name: "Houston, Texas",
@@ -83,10 +84,15 @@ var houston ={
 	rate:4.9
 }
 
-var cities = [MSP,denver,austin,OKC,columbus,pittsburgh,sanAntonio,cincinnati,indianapolis,houston];
+var cities = [MSP,denver,austin,OKC,columbus,pittsburgh,sanAntonio,cincinnati,houston];
 
 
-function placeCity(city) {
+function createMarker(city) {
+	L.marker(city.latlng, {icon: myIcon}).addTo(map).bindPopup(city.name + ": "+ city.rate);
+}
+createMarker(indianapolis);
+
+function placeCity(city,cities) {
 	L.marker([city.latitude, city.longitude], {icon: myIcon}).addTo(map).bindPopup(city.name + ": "+ city.rate);
 
 }
@@ -94,7 +100,7 @@ function placeCity(city) {
 function placeCities(x) {
 	var i = 0;
 	while (i< x.length) {
-		placeCity(x[i]);
+		placeCity(x[i],x);
 		i = i+1;
 	}
 }
@@ -107,15 +113,24 @@ function compareCities(x) {
 }
 */
 
+function matchCity(city, cities) {
+	var i = 0;
+	while (i<cities.length) {
+	if (city.name === cities[i].name) {
+		alert('yay!');
+	} else {
+		i++;
+	}
+	}
+}
 
 function displayCity(city) {
 	$('#cityinfo').html('<h2>' + city.name + '</h2></br><h4>' + city.rate + '</h4>');
 }
 
-
 $('.leaflet-marker-icon').on('click', function() {
 	$('#sidebar').css('top','0').css('border-top-right-radius','0');
-	displayCity(austin);
+	this.matchCity(city,cities);
 })
 $('#map').on('click', function() {
 	$('#sidebar').css('top','76vh');
